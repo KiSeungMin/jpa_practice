@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <!--
+    JPA 구동 방식
+
+    1. META-INF/persistence.xml의 설정 정보를 조회한다.
+
+    2. 조회한 정보를 바탕으로 EntityManagerFactory를 생성한다.
+
+    3. 필요할 때마다 EntityManager를 생성한다.
+
+    -->
+    <!-- 데이터베이스 이름-->
+    <persistence-unit name="hello">
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
+
+            <!-- value에서 dialect.Mysqldialect를 선택하면 mysql 전용으로 바뀐다.-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- 옵션 -->
+
+            <!-- 쿼리를 콘솔에 출력해줌-->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- 쿼리를 예쁘게 출력해줌-->
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- 쿼리가 어떻게 생성되었는지 출력해줌-->
+            <property name="hibernate.use_sql_comments" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
