@@ -41,6 +41,7 @@ public class JpaMain {
 
             // 멤버 찾기
             // 첫 번째 인자 : 찾을 클래스, 두 번째 인자 : primary key
+            // 영속 상태
             // Member findMember = em.find(Member.class, 1L);
             // System.out.println(findMember.getId());
 
@@ -53,13 +54,18 @@ public class JpaMain {
 
             // 객체를 저장함
             // 영속성 컨텍스트 - 엔티티를 영구 저장함
-            //em.persist(member);
+            // em.persist(member);
 
             // jpa에서도 쿼리를 사용하여 검색을 하는 것이 가능하다.(JPQL)
             // JPQL은 엔티티 객체를 대상으로 쿼리를 한다.
             // SQL은 데이터베이스 테이블을 대상으로 쿼리를 한다.
             List<Member> result = em.createQuery("select m from Member as m", Member.class)
                     .getResultList();
+
+            // 플러쉬 : 영속성 컨텍스트의 변경내용을 데이터베이스에 동기화 (영속성 컨텍스트를 비우지 않음)
+            // flush : persist 한 내용을 즉시 반영
+            // jpql 쿼리를 실행하면 플러시가 자동으로 호출된다.
+            // em.flush();
 
             // transaction commit
             // 영속성 컨텍스트에 있는 쿼리가 반영된다.

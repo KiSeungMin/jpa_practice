@@ -32,6 +32,17 @@
             <property name="hibernate.format_sql" value="true"/>
             <!-- 쿼리가 어떻게 생성되었는지 출력해줌-->
             <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.jdbc.batch_size" value="10"/>
+            <!--
+            value = create -> 기존에 있던 테이블을 지우고 새로 생성 (DROP + CREATE) (개발 초기)
+            value = create-drop -> 종료시점에 테이블을 DROP
+            value = update -> 변경분만 반영 (운영 DB 에서는 사용하면 안됨) (개발 초기 or 테스트 서버)
+            value = validate -> 엔티티와 테이블이 정상 매핑되었는지만 확인 (테스트 서버 or 운영 서버)
+            value = none -> 사용하지 않음
+
+            * 운영 장비에는 절대 create, create-drop, update를 사용하면 안된다.
+            -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>
 </persistence>
